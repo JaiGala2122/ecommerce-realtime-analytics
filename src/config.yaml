@@ -1,0 +1,28 @@
+kafka:
+  bootstrap_servers: ["localhost:9092"]
+  topic: "transactions.raw"
+  acks: "all"
+  compression_type: "snappy"
+  linger_ms: 20
+  batch_size: 65536
+
+stream:
+  events_per_second: 30
+  max_sleep_ms: 200
+  random_seed: 42
+
+spark:
+  app_name: "rt-ecom-analytics"
+  kafka_topic: "transactions.raw"
+  checkpoint_dir: "data/checkpoints/rt-job"
+  output_mode: "append"
+
+storage:
+  postgres:
+    host: "localhost"
+    port: 5432
+    db: "ecom"
+    user: "postgres"
+    password: "postgres"
+    table: "metrics_minute"
+  parquet_dir: "data/parquet/metrics_minute"
