@@ -21,33 +21,7 @@ Postgres / Parquet Storage
 
 ---
 
-## 📂 Project Structure
-```
-real-time-ecommerce-analytics/
-│
-├── data/
-│   └── Online_Retail.xlsx         # Real dataset (UCI Online Retail)
-│
-├── src/
-│   ├── prepare_offline_sample.py  # Cleans and exports data → CSV + JSONL
-│   ├── stream_simulator.py        # Streams JSONL events to Kafka
-│   ├── spark_job.py               # Spark Structured Streaming job
-│   ├── config.yaml                # Kafka/Spark/Postgres configuration
-│   └── utils.py                   # Helper functions
-│
-├── sql/
-│   └── schema.sql                 # DDL for Postgres output table
-│
-├── docs/
-│   └── index.html                 # Project website (results + write-up)
-│
-├── docker-compose.yml             # Kafka + Zookeeper + Postgres stack
-├── requirements.txt               # Python dependencies
-├── LICENSE                        # MIT License
-└── .gitignore                     # Common excludes
-```
 
----
 
 ## 🚀 Quickstart Guide
 
