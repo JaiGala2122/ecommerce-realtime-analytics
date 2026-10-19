@@ -1,0 +1,35 @@
+# Where events travel between the simulator and Spark.
+#   files: the simulator drops JSON-lines files into stream.landing_dir (no Kafka needed)
+#   kafka: the simulator publishes to kafka.topic (run `docker compose up -d` first)
+source: "files"
+
+kafka:
+  bootstrap_servers: ["localhost:9092"]
+  topic: "transactions.raw"
+  acks: "all"
+  linger_ms: 20
+  batch_size: 65536
+
+stream:
+  events_per_second: 5000      # replay rate; the simulator paces itself to this
+  events_per_file: 1000        # files mode only
+  landing_dir: "data/landing"
+
+spark:
+  app_name: "rt-ecom-analytics"
+  kafka_package: "org.apache.spark:spark-sql-kafka-0-10_2.13:4.0.4"
+  trigger_seconds: 2
+  window: "1 hour"             # aggregation window, on the original invoice time
+  watermark: "1 day"           # how late an event may arrive and still be counted
+  checkpoint_dir: "data/checkpoints"
+
+storage:
+  postgres:
+    host: "localhost"
+    port: 5432
+    dbname: "ecom"
+    user: "postgres"
+    password: "postgres"
+    table: "sales_by_country_hour"
+  bronze_dir: "data/bronze/events"       # every cleaned event, as Parquet
+  metrics_dir: "data/metrics"            # per-batch throughput and freshness
