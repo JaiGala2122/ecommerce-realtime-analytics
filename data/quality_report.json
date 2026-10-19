@@ -1,0 +1,12 @@
+{
+  "raw_rows": 541909,
+  "dropped_missing_required": 0,
+  "dropped_bad_date": 0,
+  "dropped_negative_price": 2,
+  "dropped_exact_duplicates": 5268,
+  "rows_kept": 536639,
+  "rows_missing_customer_id": 135035,
+  "rows_returns": 10587,
+  "first_invoice": "2010-12-01T08:26:00",
+  "last_invoice": "2011-12-09T12:50:00"
+}
