@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+data/events.jsonl
+data/landing/
+data/checkpoints/
+data/bronze/
+spark-warehouse/
